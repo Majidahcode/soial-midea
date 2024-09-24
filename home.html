@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>soicl midea</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!-- ========ALERT======= -->
+    <div
+      id="AlertPlaceholder"
+      class="show fade"
+      style="position: fixed; z-index: 9999; width: 30%; bottom: 0; right: 0"
+    ></div>
+    <!-- <button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button> -->
+
+    <!-- ========ALERT======= -->
+
+    <!-- ===========MODAL LOGIN========= -->
+    <div
+      class="modal fade modelcss"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content containerLoginctmb">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              تسجيل الدخول
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >اسم المستخدم</label
+                >
+                <input
+                  id="input1"
+                  type="text"
+                  class="form-control"
+                  value="majidah"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >كلمة السر</label
+                >
+                <input
+                  id="input2"
+                  class="form-control input"
+                  type="password"
+                  value="123456"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn loginlog loginlogClose"
+              data-bs-dismiss="modal"
+            >
+              خروج
+            </button>
+            <button
+              type="button"
+              class="btn loginlog"
+              onclick="loginbuttonclick()"
+            >
+              تسجيل الدخول
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===========MODAL LOGIN========= -->
+
+    <!-- ===========MODAL REGESTER========= -->
+    <div
+      class="modal fade modelcss"
+      id="regesterModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              تسجيل الدخول
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Profile Image:</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="register-image-input"
+                  value="Yarob99"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >الاسم
+                </label>
+                <input
+                  id="regesterNameInput"
+                  type="text"
+                  class="form-control"
+                  value="majidah"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >اسم المستخدم</label
+                >
+                <input
+                  id="regesterUserNameInput"
+                  type="text"
+                  class="form-control"
+                  value="majidah"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >كلمة السر</label
+                >
+                <input
+                  id="regesterPassInput2"
+                  class="form-control input"
+                  type="password"
+                  value="123456"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn loginlog loginlogClose"
+              data-bs-dismiss="modal"
+            >
+              خروج
+            </button>
+            <button
+              type="button"
+              class="btn loginlog"
+              onclick="regesterbuttonclick()"
+            >
+              تسجيل
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===========MODAL REGESTER========= -->
+
+    <!-- ===========MODAL ADD POST BUTTON========= -->
+    <div
+      class="modal fade modelcss"
+      id="addPodtModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content containerLoginctmb">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">اضافه منشور</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">
+                  العنوان</label
+                >
+                <input
+                  id="add-title-input"
+                  type="text"
+                  class="form-control"
+                  value="فلسفه"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">
+                  الرساله</label
+                >
+                <textarea
+                  id="add-post-input"
+                  class="form-control input"
+                  name=""
+                  id=""
+                  style="resize: none"
+                >
+...اكتب ما تشعر به</textarea
+                >
+              </div>
+            </form>
+            <div>
+              <label for="recipient-name" class="col-form-label"> الصوره</label>
+              <input id="add-image-input" type="file" class="form-control" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn loginlog loginlogClose"
+              data-bs-dismiss="modal"
+            >
+              خروج
+            </button>
+            <button
+              type="button"
+              class="btn loginlog"
+              onclick="AddPostButton()"
+            >
+              نشر
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===========MODAL ADD POST BUTTON========= -->
+
+    <!--ADD POST BUTTON -->
+    <div
+      class="add-post-button"
+      id="add-post-button"
+      data-bs-toggle="modal"
+      data-bs-target="#addPodtModal"
+    >
+      <span>+</span>
+    </div>
+    <!--=======ADD POST BUTTON ========-->
+
+    <div id="sidebar" class="sidebar">
+      <div class="header-sidebar">
+        <img id="sidebar-image" src="" alt="" />
+        <br />
+        <b id="sidebar-username">@Yarob</b>
+        <h6 id="sidebar-email">Yarob13@gmail.com</h6>
+        <div class="shodw-box">
+          <h6>058718784</h6>
+          <h6>Male</h6>
+          <h6>saudi aribya</h6>
+          <h6>riyadh</h6>
+          <h6>Software Engneer</h6>
+          <h6>5 year Expireienc</h6>
+        </div>
+      </div>
+    </div>
+    <div class="content-side">
+      <div class="links">
+        <a href="#">اضافه </a>
+        <div class="one"></div>
+
+        <a href="#">منشوراتي </a>
+        <div class="one"></div>
+
+        <a href="#">منشورات اعجبتني </a>
+        <div class="one"></div>
+
+        <a href="#">المشاهده لاحقا </a>
+      </div>
+    </div>
+    <!--=== NON_LOGGED IN USER ===-->
+    <div class="buttons">
+      <a
+        id="loginBtn"
+        class="login"
+        data-bs-toggle="modal"
+        data-bs-target="#loginModal"
+        >Login</a
+      >
+      <br />
+      <a
+        id="regesterBtn"
+        class="regs"
+        data-bs-toggle="modal"
+        data-bs-target="#regesterModal"
+        >Regester</a
+      >
+    </div>
+    <!-- ====NON_LOGGED IN USER=== -->
+
+    <!-- ====FOR LOGGED IN USER=== -->
+    <div class="buttons">
+      <button
+        onclick="logout()"
+        id="logOutBtn"
+        class="login btn logout btn-outlin-danger mx2 mt-5"
+        data-bs-toggle="modal"
+      >
+        logout
+      </button>
+    </div>
+    <!-- ====FOR LOGGED IN USER=== -->
+
+    <header class="header">
+      <a class="logo" href="/home.html">Tarmeez</a>
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Your Friends</a>
+        <a href="#">Serche</a>
+      </nav>
+    </header>
+
+    <div class="container">
+    
+    </div>
+  </body>
+  <script src="./mainLogic.js"></script>
+  
+  <script>
+    //const baseURL = "https://tarmeezacademy.com/api/v1";
+  
+
+    window.addEventListener("scroll", function () {
+    
+    });
+    setupUI();
+
+    console.log("Loading posts...");
+    getPosts();
+    function getPosts(page = 1) {
+      axios.get(`${baseURL}/posts?limit=&page=${page}`)
+      .then((response) =>{
+        const posts = response.data.data
+
+        for(post of posts){
+          let container = document.querySelector(".container");
+          console.log(post)
+          let card = document.createElement("div");
+          card.classList.add("card");
+          card.innerHTML = `
+              <div class="header-card">
+                <img src="${post.author.profile_image}" alt="" />
+                <b id="h">@${post.author.username}</b>
+              </div>
+              <div class="content" onclick="cardClick(${post.id})">
+                <img src="${post.image}" alt="" />
+                <h6>Posted at: ${post.created_at}</h6>
+                <h4>${post.title}</h4>
+                <p>${post.body}</p>
+                <hr />
+                <div class="end-card">
+                  <span class="pen">🖊</span>
+                  <span class="comment"> Comment (${post.comments_count})
+
+                    <span id="tags" > 
+                  </span>
+                  
+                </div>
+              </div>
+            `;
+
+          container.appendChild(card);
+          //document.getElementById("tags").innerHTML = ""
+          function showUserInfo() {
+            let sidebar = document.querySelector(".sidebar");
+
+          
+          }
+          showUserInfo();
+
+        
+          
+        }
+        
+      })
+      
+    }
+
+    function cardClick(postId){
+      //alert(postId)
+      window.location = `postDetails.html?postId=${postId}`
+
+    }
+    //document.getElementById("login").addEventListener("click", () => {
+
+    //  })
+
+  
+
+  
+    
+  
+    
+  
+
+    function AddPostButton() {
+      console.log("انشاء منشور جديد قيد التنفيذ...");
+      let title = document.getElementById("add-title-input").value;
+      let body = document.getElementById("add-post-input").value;
+      let image = document.getElementById("add-image-input").files[0];
+      const token = localStorage.getItem("token");
+      let formData = new FormData();
+      formData.append("title", title);
+      formData.append("body", body);
+      formData.append("image", image);
+      //  const param = {"title": title, "body": body,};
+
+      const url = `${baseURL}/posts`;
+      //const token = localStorage.getItem("token")
+      const headers = {
+        "Content-Type": "multipart/form-data",
+        authorization: ` Bearer ${token}`,
+      };
+      axios
+        .post(url, formData, {
+          headers: headers,
+        })
+        .then((response) => {
+          console.log(response);
+          const modal = document.getElementById("addPodtModal");
+          const modalInstance = bootstrap.Modal.getInstance(modal);
+          modalInstance.hide();
+          //setupUI(); // تحديث الواجهة
+          showAlert("تم اضافه منشور جديد", "success");
+          getPosts();
+          // إعادة تحميل الصفحة للتأكد من تحديث الواجهة
+        })
+        .catch((error) => {
+          console.error("حدث خطأ ما! تأكد من حجم الصوره", error);
+          showAlert(
+            "  حدث خطأ ما ! تأكد من حجم الصوره او من ان الملف صحيح",
+            "danger"
+          );
+        });
+    }
+    //window.location.reload();
+  </script>
+</html>
